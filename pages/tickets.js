@@ -34,7 +34,7 @@ export default function Tickets({ data }) {
     </div>
   );
 }
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getData("tickets");
 
   return { props: { data } };

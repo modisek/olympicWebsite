@@ -57,7 +57,7 @@ export default function Home({ data, sched }) {
     </div>
   );
 }
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getData("article");
   const sched = await getData("schedule");
 

@@ -62,7 +62,7 @@ export default function Schedule({ data, com }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getData("games");
   const com = await getData("comments");
   return { props: { data, com } };

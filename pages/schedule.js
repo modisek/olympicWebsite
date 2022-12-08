@@ -31,7 +31,7 @@ export default function Schedule({ data }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getData("schedule");
 
   return { props: { data } };

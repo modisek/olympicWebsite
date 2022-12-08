@@ -217,7 +217,7 @@ export default function Admin({ results, schedule }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const results = await getData("results");
   const schedule = await getData("schedule");
 

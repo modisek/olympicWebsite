@@ -31,7 +31,7 @@ export default function User({ data }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getData("rota");
   return { props: { data } };
 }
