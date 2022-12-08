@@ -2,13 +2,10 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "./components/header.js";
 import Footer from "./components/footer.js";
-import useSWR from "swr";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-export default function Results() {
-  const { data, error } = useSWR("/api/results", fetcher);
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+import { getData } from "../lib/getData.js";
+
+export default function Results({ data }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -35,4 +32,10 @@ export default function Results() {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const data = await getData("results");
+
+  return { props: { data } };
 }
