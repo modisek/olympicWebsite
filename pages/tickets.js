@@ -4,7 +4,7 @@ import Header from "./components/header.js";
 import Footer from "./components/footer.js";
 import { getData } from "../lib/getData.js";
 import { useDispatch } from "react-redux";
-import { addToCart } from "./redux/cart.slice";
+import { addToCart } from "../redux/cart.slice";
 export default function Tickets({ data }) {
   const dispatch = useDispatch();
   return (
