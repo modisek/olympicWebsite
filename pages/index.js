@@ -4,7 +4,20 @@ import styles from "../styles/Home.module.css";
 import Header from "./components/header.js";
 import Footer from "./components/footer.js";
 import { getData } from "../lib/getData.js";
-export default function Home({ data, sched }) {
+import useSWR from "swr";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+export default function Home() {
+  const { data: article, error: articleError } = useSWR(
+    "/api/article",
+    fetcher
+  );
+  const { sched: schedule, error: scheduleError } = useSWR(
+    "/api/schedule",
+    fetcher
+  );
+  if (articleError) return <div>failed to load</div>;
+  if (!article) return <div>loading...</div>;
   return (
     <div className={styles.container}>
       <Head>
@@ -24,7 +37,7 @@ export default function Home({ data, sched }) {
           </h3>
         </div>
         <h1>News</h1>
-        {data.map((item) => (
+        {article.map((item) => (
           <div key={item.id} className={styles.grid}>
             <div className={styles.card}>
               <h2>{item.header}</h2>
@@ -41,25 +54,7 @@ export default function Home({ data, sched }) {
         ))}
       </main>
 
-      <aside>
-        <h1>Schedule of events</h1>
-        {sched.map((item) => (
-          <div key={item.id} className={styles.grid}>
-            <div className={styles.card}>
-              <h2>{item.activity}</h2>
-              <p>{item.date_time}</p>
-            </div>
-          </div>
-        ))}
-      </aside>
-
       <Footer />
     </div>
   );
-}
-export async function getServerSideProps() {
-  const data = await getData("article");
-  const sched = await getData("schedule");
-
-  return { props: { data, sched } };
 }
