@@ -180,7 +180,7 @@ export default function Admin({ results, schedule }) {
             </a>
           </div>
           {schedule.map((item) => (
-            <div className={styles.grid}>
+            <div key={item.id} className={styles.grid}>
               <a href="#" className={styles.card}>
                 <h2>{item.activity}</h2>
                 <p>{item.date_time}</p>

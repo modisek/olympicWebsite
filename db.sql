@@ -1,5 +1,5 @@
-create database nextjs;
-use nextjs;
+create database freedb_nextjs;
+use freedb_nextjs;
 create table users(
     user_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
