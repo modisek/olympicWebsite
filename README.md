@@ -7,7 +7,7 @@
 
 cd into the project 
 ```
-cd tumi
+cd olympic
 
 ```
 
