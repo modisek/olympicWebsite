@@ -18,10 +18,7 @@ export default function Admin() {
         "/api/schedule",
         fetcher
     );
-    if (resultsError && scheduleError) return <div>failed to load</div>;
-    if (!rs && !sched) return <div>loading...</div>;
-
-    const handleResult = async (event) => {
+       const handleResult = async (event) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault();
         // Get data from the form.

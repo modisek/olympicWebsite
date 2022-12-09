@@ -15,8 +15,7 @@ export default function Tickets() {
         "/api/tickets",
         fetcher
     );
-    if (ticketsError) return <div>failed to load</div>;
-    if (!tickets) return <div>loading...</div>;
+
 
     return (
         <div className={styles.container}>
@@ -44,5 +43,6 @@ export default function Tickets() {
             </main>
         </div>
     );
+
 }
 
