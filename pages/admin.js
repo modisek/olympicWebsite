@@ -8,6 +8,8 @@ import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function Admin() {
+
+    const router = useRouter();
     const { data: rs, error: resultsError } = useSWR(
         "/api/results",
         fetcher
@@ -19,7 +21,6 @@ export default function Admin() {
     if (resultsError && scheduleError) return <div>failed to load</div>;
     if (!rs && !sched) return <div>loading...</div>;
 
-    const router = useRouter();
     const handleResult = async (event) => {
         // Stop the form from submitting and refreshing the page.
         event.preventDefault();

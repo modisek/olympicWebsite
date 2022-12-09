@@ -9,6 +9,8 @@ import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function Tickets() {
+
+    const dispatch = useDispatch();
     const { data: tickets, error: ticketsError } = useSWR(
         "/api/tickets",
         fetcher
@@ -16,7 +18,6 @@ export default function Tickets() {
     if (ticketsError) return <div>failed to load</div>;
     if (!tickets) return <div>loading...</div>;
 
-    const dispatch = useDispatch();
     return (
         <div className={styles.container}>
             <Head>
